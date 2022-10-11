@@ -62,11 +62,11 @@ const SongSearch = (footerPosition) => {
       bio,
     };
 
-    // con spread, que tome lo que ya trae "mySongs" (almacenado en el localStorage) más la nueva búsqueda (el objeto currentSong). Luego el useEffect lo guarda en localStorage
-    setMySongs((mySongs) => [...mySongs, currentSong]);
-    setTimeout(() => {
-      setSearch(null);
-    }, 500);
+    // con spread, que tome lo que ya trae "mySongs" (almacenado en el localStorage) más la nueva búsqueda (el objeto currentSong). Luego actualizamos setMySongs con lo que acababos de guardar en "songs", y el useEffect lo guardará en localStorage
+    let songs = [...mySongs, currentSong];
+    setMySongs(songs);
+    setSearch(null);
+    localStorage.setItem("mySongs", JSON.stringify(songs));
   };
 
   const handleDeleteSong = (id) => {
